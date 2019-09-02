@@ -79,8 +79,6 @@ echo 'Querying on Org3 peer..'
 docker exec -it cli3 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["privateCollection","MSFTP3V"]}'
 
 
-# Starting docker logs of chaincode container
+#Starting docker logs of chaincode container
 
 docker logs -f dev-peer0.org1.example.com-mycc-1.0
-
-
