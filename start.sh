@@ -63,7 +63,7 @@ echo 'on Org1..'
 docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["publicCollection","MSFTP3"]}'
 echo 'on Org2..'
 docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["publicCollection","MSFTP3"]}'
-echo 'on Org3..
+echo 'on Org3..'
 docker exec -it cli3 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["publicCollection","MSFTP3"]}'
 
 
