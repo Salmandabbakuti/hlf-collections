@@ -57,7 +57,7 @@ echo 'Adding Product on private ledger..'
 docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["privateCollection","MSFTP3V","Microsoft Surface Pro3","457","EliteStores"]}'
 
 
-sleep 3
+sleep 6
 echo 'Querying Public Product..'
 echo 'on Org1..'
 docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["publicCollection","MSFTP3"]}'
@@ -66,7 +66,7 @@ docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychan
 echo 'on Org3..'
 docker exec -it cli3 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["publicCollection","MSFTP3"]}'
 
-
+sleep 5
 echo 'Querying on Org1 Peer  Private Product..'
 
 docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"queryProduct","Args":["privateCollection","MSFTP3V"]}'
