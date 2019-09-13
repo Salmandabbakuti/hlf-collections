@@ -30,7 +30,7 @@ chmod a+x start.sh
 ./generate.sh
 ./start.sh
 
-docker ps -a
+sudo docker ps -a
 
 
 echo 'Installing chaincode..'
