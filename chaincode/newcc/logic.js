@@ -20,7 +20,8 @@ class collections extends Contract {
         if (transient.size == 0){ 
             throw new Error (`No transient data detected.`);
         }
-     let price = transient.get('price').toBuffer().toString('base64');
+     let priceBuffer = transient.get('price')
+     let price = Buffer.from(priceBuffer, 'base64').toString()
      console.log(price);
 
 
