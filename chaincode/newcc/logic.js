@@ -14,8 +14,15 @@ class collections extends Contract {
 
   
 
-  async addProduct(ctx, collectionName, productId,name,price,seller) {
+  async addProduct(ctx, collectionName, productId,name,seller) {
     console.info('============= START : Adding Product===========');
+      const transient = await ctx.stub.getTransient();                
+        if (transient.size == 0){ 
+            throw new Error (`No transient data detected.`);
+        }
+     let price = transient.get('price').toBuffer().toString('base64');
+     console.log(price);
+
 
    let product = {
       ProductId: productId,
