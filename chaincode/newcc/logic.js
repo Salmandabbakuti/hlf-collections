@@ -31,7 +31,7 @@ class collections extends Contract {
       Seller: seller
     };
 
-    await ctx.stub.putPrivateData(collectionName,productId Buffer.from(JSON.stringify(product)));
+    await ctx.stub.putPrivateData(collectionName,productId, Buffer.from(JSON.stringify(product)));
     console.info('============= END : Private Product Added===========');
     return "Product Added.."
   }
