@@ -41,7 +41,7 @@ sudo docker exec -it cli3 peer chaincode install -n mycc -v 1.0 -p "/opt/gopath/
 
 
 echo 'Instanitating chaincode..'
-sudo docker exec -e "CORE_PEER_LOCALMSPID=Org1MSP" -e "CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp" cli peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -l "node" -v 1.0 -c '{"Args":[""]}' --collections-config "/opt/gopath/src/github.com/chaincode/newcc/collection-config.json" -P "OR ('Org1MSP.member','Org2MSP.member')"
+sudo docker exec -e "CORE_PEER_LOCALMSPID=Org1MSP" -e "CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp" cli peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -l "node" -v 1.0 -c '{"Args":[]}' --collections-config "/opt/gopath/src/github.com/chaincode/newcc/collection-config.json" -P "OR ('Org1MSP.member','Org2MSP.member')"
 
 echo 'Getting things ready for Chaincode Invocation..should take only 10 seconds..'
 sleep 10
@@ -52,7 +52,7 @@ sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C my
 echo 'Adding Product on private ledger..'
 PRICE=`openssl enc -base64 <<< '228'`
 
-sudo docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["privateCollection","MSFTP3V","Microsoft Surface Pro3","EliteStores"]}'--transient "{\"price\":\"$PRICE\"}"
+sudo docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["privateCollection","MSFTP3V","Microsoft Surface Pro3","EliteStores"]}' --transient "{\"price\":\"$PRICE\"}"
 
 
 sleep 6
