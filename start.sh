@@ -47,11 +47,12 @@ echo 'Getting things ready for Chaincode Invocation..should take only 10 seconds
 sleep 10
 echo 'Adding Product on public ledger..'
 
-sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["publicCollection","MSFTP3","Microsoft Surface Pro3","457","EliteStores"]}'
+sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["publicCollection","MSFTP3","Microsoft Surface Pro3","EliteStores"]}'
 
 echo 'Adding Product on private ledger..'
+PRICE=`openssl enc -base64 <<< '228'`
 
-sudo docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["privateCollection","MSFTP3V","Microsoft Surface Pro3","457","EliteStores"]}'
+sudo docker exec -it cli2 peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"addProduct","Args":["privateCollection","MSFTP3V","Microsoft Surface Pro3","EliteStores"]}'--transient "{\"price\":\"$PRICE\"}"
 
 
 sleep 6
